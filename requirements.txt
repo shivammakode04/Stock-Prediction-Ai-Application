@@ -1,0 +1,16 @@
+import os
+import google.generativeai as genai
+from news import get_stock_news
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+def get_ai_insights(symbol):
+    res = model.generate_content(f"Give insights for {symbol}")
+    return {"insight": res.text}
+
+def analyze_sentiment(symbol):
+    news = get_stock_news(symbol)
+    text = "\n".join([n["title"] for n in news])
+    res = model.generate_content(f"Analyze sentiment:\n{text}")
+    return {"analysis": res.text}

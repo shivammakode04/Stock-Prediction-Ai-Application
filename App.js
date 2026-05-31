@@ -1,0 +1,7 @@
+{
+  "name": "stock-predictor",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}
